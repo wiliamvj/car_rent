@@ -13,6 +13,14 @@ export class CarRentUseCase {
       },
     });
 
+    if (!carRent) {
+      throw new Error('Car not found!');
+    }
+
+    if (carRent.id_user_rent !== null) {
+      throw new Error('this car is already rented');
+    }
+
     const verifyUserHaveRent = await prisma.user.findUnique({
       where: {
         id: id_user_rent,
@@ -22,17 +30,11 @@ export class CarRentUseCase {
       },
     });
 
-    if (verifyUserHaveRent?.Cars) {
-      console.log(verifyUserHaveRent.Cars);
+    if (
+      verifyUserHaveRent?.Cars === undefined ||
+      verifyUserHaveRent?.Cars.length >= 1
+    ) {
       throw new Error('you already have rental cars');
-    }
-
-    if (!carRent) {
-      throw new Error('Car not found!');
-    }
-
-    if (carRent.id_user_rent !== null) {
-      throw new Error('this car is already rented');
     }
 
     await prisma.cars.update({
