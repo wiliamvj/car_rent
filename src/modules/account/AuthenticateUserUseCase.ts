@@ -11,9 +11,7 @@ export class AuthenticateUseCase {
   async login({ email, password }: IAuthenticateUser) {
     const user = await prisma.user.findFirst({
       where: {
-        email: {
-          mode: 'insensitive',
-        },
+        email: email,
       },
     });
 
