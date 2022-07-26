@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { CreateUserUseCase } from './CreateUserUseCase';
 
 export class CreateUserController {
-  async handleUser(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const { name, email, password } = req.body;
 
     const createUserUseCase = new CreateUserUseCase();
@@ -14,10 +14,6 @@ export class CreateUserController {
       password,
     });
 
-    try {
-      return res.json(userResults);
-    } catch (err) {
-      return err;
-    }
+    return res.json(userResults);
   }
 }

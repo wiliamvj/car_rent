@@ -9,7 +9,6 @@ interface ICreateUser {
 
 export class CreateUserUseCase {
   async create({ name, email, password }: ICreateUser) {
-    console.log({ name, email, password });
     const userExists = await prisma.user.findFirst({
       where: {
         email: {
