@@ -9,6 +9,7 @@ interface ICreateUser {
 
 export class CreateUserUseCase {
   async create({ name, email, password }: ICreateUser) {
+    console.log({ name, email, password });
     const userExists = await prisma.user.findFirst({
       where: {
         email: {
@@ -21,14 +22,21 @@ export class CreateUserUseCase {
       throw new Error('User alredy exists!');
     }
 
-    const hashPassword = await hash(password, 15);
+    const hashPassword = await hash(password, 10);
 
-    await prisma.user.create({
+    const saveUser = await prisma.user.create({
       data: {
         name,
         email,
         password: hashPassword,
       },
     });
+
+    const result = {
+      name: saveUser.name,
+      email: saveUser.email,
+    };
+
+    return result;
   }
 }
