@@ -4,11 +4,12 @@ import { UpdateUserUseCase } from './UpdateUserUseCase';
 
 export class UpdateUserController {
   async update(req: Request, res: Response) {
-    const { name, email } = req.body;
+    const { name, email, id } = req.body;
 
     const updateUserUseCase = new UpdateUserUseCase();
 
     const userResults = await updateUserUseCase.update({
+      id,
       name,
       email,
     });

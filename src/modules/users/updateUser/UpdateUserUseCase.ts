@@ -1,15 +1,16 @@
 import { prisma } from '../../../database/prismaClient';
 
 interface IUpdateUser {
+  id: string;
   name: string;
   email: string;
 }
 
 export class UpdateUserUseCase {
-  async update({ name, email }: IUpdateUser) {
+  async update({ id, name, email }: IUpdateUser) {
     const userExists = await prisma.user.findUnique({
       where: {
-        email: email,
+        id: id,
       },
     });
 
@@ -19,7 +20,7 @@ export class UpdateUserUseCase {
 
     const updateUser = await prisma.user.update({
       where: {
-        id: userExists.id,
+        id: id,
       },
       data: {
         name,
@@ -28,7 +29,7 @@ export class UpdateUserUseCase {
     });
 
     const result = {
-      id: updateUser.id,
+      id: id,
       name: updateUser.name,
       email: updateUser.email,
     };
