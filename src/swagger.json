@@ -346,6 +346,88 @@
           }
         }
       }
+    },
+
+    "/car/rent": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Rent a car",
+        "description": "Book a car for the user",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "in_rent": {
+                    "type": "string"
+                  },
+                  "until_rent": {
+                    "type": "string"
+                  }
+                }
+              },
+              
+              "example": {
+                "id": "car_id",
+                "in_rent": "30/07/2022",
+                "until_rent": "04/08/2022"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Car booked successfully"
+          },
+          "400": {
+            "description": "Date invalid or car is already rented or car not found or user already have rental cars"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
+    },
+
+    "/car/rent/cancel": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Cancel a rent car",
+        "description": "Cancel a rent car for the user",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  }
+                }
+              },
+              
+              "example": {
+                "id": "car_id"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Rent successfully removed"
+          },
+          "400": {
+            "description": "Car not found in your list or car not found"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
     }
     
   },
