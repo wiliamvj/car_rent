@@ -70,7 +70,6 @@
               },
               
               "example": {
-                "name": "Fulano",
                 "email": "thebestemail.com",
                 "password": "strongPass1*"
               }
