@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { CarRentUseCase } from './CarRentUseCaseInMemory';
 
 describe('Renting car', () => {
-  it('I hope a success message', async () => {
+  it('I hope a success message to rent car', async () => {
     const carRentUseCase = new CarRentUseCase();
 
     const carRent = await carRentUseCase.rent({
@@ -16,7 +16,7 @@ describe('Renting car', () => {
 });
 
 describe('Cancel rent car', () => {
-  it('I hope a success message', async () => {
+  it('I hope a success message to cancel rent', async () => {
     const carRentUseCase = new CarRentUseCase();
 
     const carCancelRent = await carRentUseCase.cancelRent({
