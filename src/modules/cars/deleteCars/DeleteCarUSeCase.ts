@@ -12,8 +12,6 @@ export class DeleteCarUseCase {
       },
     });
 
-    console.log(id);
-
     if (!car) {
       throw new Error('Car not found!');
     }
