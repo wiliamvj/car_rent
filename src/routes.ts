@@ -12,6 +12,7 @@ import { CreateCarController } from './modules/cars/registerCars/CreateCarContro
 import { ListCarsController } from './modules/cars/listCars/ListCarsController';
 import { DeleteCarController } from './modules/cars/deleteCars/DeleteCarController';
 import { CarRentController } from './modules/cars/carRent/CarRentController';
+import { UpdateCarController } from './modules/cars/updateCars/UpdateCarController';
 
 const routes = Router();
 
@@ -25,6 +26,7 @@ const createCarController = new CreateCarController();
 const listCarsController = new ListCarsController();
 const deleteCarController = new DeleteCarController();
 const carRentController = new CarRentController();
+const updateCarController = new UpdateCarController();
 
 routes.post('/user', createUserController.create);
 routes.post('/login', authenticateUserController.login);
@@ -41,5 +43,6 @@ routes.post(
   validateAuthenticate,
   carRentController.cancelRent
 );
+routes.put('/car/update', validateAuthenticate, updateCarController.update);
 
 export { routes };
