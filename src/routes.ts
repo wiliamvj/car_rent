@@ -31,7 +31,7 @@ const updateCarController = new UpdateCarController();
 routes.post('/user', createUserController.create);
 routes.post('/login', authenticateUserController.login);
 routes.get('/users', validateAuthenticate, listUserController.list);
-routes.put('/user', validateAuthenticate, updateUserController.update);
+routes.put('/user/update', validateAuthenticate, updateUserController.update);
 routes.delete('/user', validateAuthenticate, deleteUserController.delete);
 
 routes.post('/car/register', validateAuthenticate, createCarController.create);

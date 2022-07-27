@@ -103,7 +103,54 @@
           }
         }
       }
+    },
+
+    "/user/update": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Update user",
+        "description": "Route for update user",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }, 
+                  "email": {
+                    "type": "string"
+                  }
+
+                }
+              },
+              
+              "example": {
+                "id": "id user",
+                "name": "Fulano",
+                "email": "thebestemail.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Parameters not found"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
     }
+    
   },
   "components": {
     "securitySchemes": {
