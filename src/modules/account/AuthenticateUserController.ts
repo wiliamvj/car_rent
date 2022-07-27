@@ -6,6 +6,10 @@ export class AuthenticateUserController {
   async login(req: Request, res: Response) {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+      throw new Error('Parameters not found, see docs in /docs');
+    }
+
     const authenticateUseCase = new AuthenticateUseCase();
 
     const userResults = await authenticateUseCase.login({
