@@ -36,5 +36,10 @@ routes.post('/car/register', validateAuthenticate, createCarController.create);
 routes.get('/cars', validateAuthenticate, listCarsController.list);
 routes.delete('/cars', validateAuthenticate, deleteCarController.delete);
 routes.post('/car/rent', validateAuthenticate, carRentController.rent);
+routes.post(
+  '/car/rent/cancel',
+  validateAuthenticate,
+  carRentController.cancelRent
+);
 
 export { routes };

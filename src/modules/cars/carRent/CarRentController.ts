@@ -13,4 +13,15 @@ export class CarRentController {
 
     return res.json(carRent);
   }
+
+  async cancelRent(req: Request, res: Response) {
+    const { id } = req.body;
+    const { id_user_rent } = req;
+
+    const carRentUseCase = new CarRentUseCase();
+
+    const cancelRent = await carRentUseCase.cancelRent({ id, id_user_rent });
+
+    return res.json(cancelRent);
+  }
 }

@@ -48,4 +48,27 @@ export class CarRentUseCase {
 
     return { message: 'Car booked with successor' };
   }
+
+  async cancelRent({ id }: ICarRent) {
+    const cancel = await prisma.cars.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!cancel) {
+      throw new Error('Car not found!');
+    }
+
+    await prisma.cars.update({
+      where: {
+        id: id,
+      },
+      data: {
+        id_user_rent: null,
+      },
+    });
+
+    return { message: 'Rent successfully removed' };
+  }
 }
