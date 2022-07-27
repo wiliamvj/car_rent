@@ -4,7 +4,7 @@ import { validateAuthenticate } from './middlewares/validateAuthenticate';
 
 import { CreateUserController } from './modules/users/createUser/CreateUserController';
 import { AuthenticateUserController } from './modules/account/AuthenticateUserController';
-import { ListUserController } from './modules/users/listUser/ListUserController';
+import { ListUsersController } from './modules/users/listUsers/ListUsersController';
 import { UpdateUserController } from './modules/users/updateUser/UpdateUserController';
 import { DeleteUserController } from './modules/users/deleteUser/DeleteUserController';
 
@@ -18,7 +18,7 @@ const routes = Router();
 
 const createUserController = new CreateUserController();
 const authenticateUserController = new AuthenticateUserController();
-const listUserController = new ListUserController();
+const listUsersController = new ListUsersController();
 const updateUserController = new UpdateUserController();
 const deleteUserController = new DeleteUserController();
 
@@ -30,7 +30,7 @@ const updateCarController = new UpdateCarController();
 
 routes.post('/user', createUserController.create);
 routes.post('/login', authenticateUserController.login);
-routes.get('/users', validateAuthenticate, listUserController.list);
+routes.get('/users', validateAuthenticate, listUsersController.list);
 routes.put('/user/update', validateAuthenticate, updateUserController.update);
 routes.delete(
   '/user/delete',

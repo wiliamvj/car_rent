@@ -1,6 +1,6 @@
 import { prisma } from '../../../database/prismaClient';
 
-export class ListUserUseCase {
+export class ListUsersUseCase {
   async list() {
     const users = await prisma.user.findMany({
       select: {

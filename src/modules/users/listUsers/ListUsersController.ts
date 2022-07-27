@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 
-import { ListUserUseCase } from './ListUserUseCase';
+import { ListUsersUseCase } from './ListUsersUseCase';
 
 export class ListUserController {
   async list(req: Request, res: Response) {
-    const listUserUseCase = new ListUserUseCase();
+    const listUsersUseCase = new ListUsersUseCase();
 
-    const users = await listUserUseCase.list();
+    const users = await listUsersUseCase.list();
 
     return res.json(users);
   }
