@@ -1,6 +1,7 @@
 import { prisma } from '../../../database/prismaClient';
 
 interface IUpdateCar {
+  id: string;
   title: string;
   specs: {
     brand: string;
@@ -13,8 +14,21 @@ interface IUpdateCar {
 }
 
 export class UpdateCarUseCase {
-  async update({ title, specs, price }: IUpdateCar) {
-    const carRent = await prisma.cars.create({
+  async update({ id, title, specs, price }: IUpdateCar) {
+    const carExists = await prisma.cars.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!carExists) {
+      throw new Error('Car not found!');
+    }
+
+    const updateCar = await prisma.cars.update({
+      where: {
+        id: id,
+      },
       data: {
         title,
         specs,
@@ -23,11 +37,10 @@ export class UpdateCarUseCase {
     });
 
     const result = {
-      id: carRent.id,
-      title: carRent.title,
-      specs: carRent.specs,
-      price_rent: carRent.price,
-      created_at: carRent.created_at,
+      id: id,
+      title: updateCar.title,
+      specs: updateCar.specs,
+      price: updateCar.price,
     };
 
     return result;

@@ -4,9 +4,9 @@ import { UpdateCarUseCase } from './UpdateCarUseCase';
 
 export class UpdateCarController {
   async update(req: Request, res: Response) {
-    const { title, specs, price } = req.body;
+    const { id, title, specs, price } = req.body;
 
-    if (!title || !specs || !price) {
+    if (!id || !title || !specs || !price) {
       throw new Error('Parameters not found, see docs in /docs');
     }
 
@@ -23,6 +23,7 @@ export class UpdateCarController {
     const udateCarUseCase = new UpdateCarUseCase();
 
     const newCarForRent = await udateCarUseCase.update({
+      id,
       title,
       specs,
       price,

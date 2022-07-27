@@ -186,6 +186,108 @@
           }
         }
       }
+    },
+
+    "/car/register": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Register new car",
+        "description": "Register new car for rent",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "specs": {
+                    "type": "object"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              },
+              
+              "example": {
+                "title": "Gol G5 preto completo",
+                "specs": {
+                  "brand": "Vvolkswagen",
+                  "model": "Gol",
+                  "km": 90.876,
+                  "type": "Passeio",
+                  "description": "Alugo carro"
+                },
+                "price": 190.00
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Parameters or specs not found"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
+    },
+
+    "/car/update": {
+      "put": {
+        "tags": ["Cars"],
+        "summary": "Update Car",
+        "description": "Update for rent",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "specs": {
+                    "type": "object"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              },
+              
+              "example": {
+                "title": "Gol G5 preto completo",
+                "specs": {
+                  "brand": "Vvolkswagen",
+                  "model": "Gol",
+                  "km": 90.876,
+                  "type": "Passeio",
+                  "description": "Alugo carro"
+                },
+                "price": 190.00
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "Parameters or specs not found"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
     }
     
   },
