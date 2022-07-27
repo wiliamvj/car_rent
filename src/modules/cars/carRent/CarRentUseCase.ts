@@ -3,8 +3,8 @@ import { prisma } from '../../../database/prismaClient';
 interface ICarRent {
   id: string;
   id_user_rent: string;
-  in_rent?: Date;
-  until_rent?: Date;
+  in_rent?: string;
+  until_rent?: string;
 }
 
 export class CarRentUseCase {

@@ -6,6 +6,10 @@ export class CarRentController {
     const { id, in_rent, until_rent } = req.body;
     const { id_user_rent } = req;
 
+    if (!id || !in_rent || !until_rent) {
+      throw new Error('Parameters not found, see docs in /docs');
+    }
+
     const regexDate =
       /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
 

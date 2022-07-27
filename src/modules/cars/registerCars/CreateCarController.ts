@@ -6,6 +6,10 @@ export class CreateCarController {
   async create(req: Request, res: Response) {
     const { title, specs, price } = req.body;
 
+    if (!title || !specs || !price) {
+      throw new Error('Parameters not found, see docs in /docs');
+    }
+
     const createCarUseCase = new CreateCarUseCase();
 
     const newCarForRent = await createCarUseCase.create({
