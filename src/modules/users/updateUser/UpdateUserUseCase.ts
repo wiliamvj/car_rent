@@ -3,7 +3,7 @@ import { prisma } from '../../../database/prismaClient';
 interface IUpdateUser {
   id: string;
   name: string;
-  email: string;
+  email?: string;
 }
 
 export class UpdateUserUseCase {

@@ -50,10 +50,10 @@ export class CarRentUseCase {
       },
     });
 
-    return { message: 'Car booked with successor' };
+    return { message: 'Car booked successfully' };
   }
 
-  async cancelRent({ id }: ICarRent) {
+  async cancelRent({ id, id_user_rent }: ICarRent) {
     const cancel = await prisma.cars.findUnique({
       where: {
         id: id,
@@ -62,6 +62,10 @@ export class CarRentUseCase {
 
     if (!cancel) {
       throw new Error('Car not found!');
+    }
+
+    if (cancel.id_user_rent !== id_user_rent) {
+      throw new Error('Car not found in your list');
     }
 
     await prisma.cars.update({

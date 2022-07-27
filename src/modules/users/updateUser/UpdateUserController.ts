@@ -6,7 +6,7 @@ export class UpdateUserController {
   async update(req: Request, res: Response) {
     const { name, email, id } = req.body;
 
-    if (!name || !email || !id) {
+    if (!name || !id) {
       throw new Error('Parameters not found, see docs in /docs');
     }
 
