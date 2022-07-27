@@ -6,14 +6,15 @@ export class CarRentController {
     const { id, in_rent, until_rent } = req.body;
     const { id_user_rent } = req;
 
-    // validate format date
+    const regexDate =
+      /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
 
-    // const regex =
-    //   /(0?[1-9]|[12]\d|30|31)[^\w\d\r\n:](0?[1-9]|1[0-2])[^\w\d\r\n:](\d{4}|\d{2})/;
+    const regexIn = regexDate.test(in_rent);
+    const regexUntil = regexDate.test(until_rent);
 
-    // if (in_rent !== regex) {
-    //   console.log('Ok');
-    // }
+    if (!regexUntil || !regexIn) {
+      throw new Error('Date is invalid! Use this format DD/MM/YYYY');
+    }
 
     const carRentUseCase = new CarRentUseCase();
 

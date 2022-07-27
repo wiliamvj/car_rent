@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "cars" ALTER COLUMN "in_rent" SET DATA TYPE TEXT,
+ALTER COLUMN "until_rent" SET DATA TYPE TEXT;
