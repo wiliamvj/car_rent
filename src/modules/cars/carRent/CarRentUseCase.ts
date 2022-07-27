@@ -3,10 +3,12 @@ import { prisma } from '../../../database/prismaClient';
 interface ICarRent {
   id: string;
   id_user_rent: string;
+  in_rent?: Date;
+  until_rent?: Date;
 }
 
 export class CarRentUseCase {
-  async rent({ id, id_user_rent }: ICarRent) {
+  async rent({ id, id_user_rent, in_rent, until_rent }: ICarRent) {
     const carRent = await prisma.cars.findUnique({
       where: {
         id: id,
@@ -43,6 +45,8 @@ export class CarRentUseCase {
       },
       data: {
         id_user_rent,
+        in_rent,
+        until_rent,
       },
     });
 
