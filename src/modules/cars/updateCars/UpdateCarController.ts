@@ -10,6 +10,16 @@ export class UpdateCarController {
       throw new Error('Parameters not found, see docs in /docs');
     }
 
+    if (
+      !specs.brand ||
+      !specs.model ||
+      !specs.km ||
+      !specs.type ||
+      !specs.description
+    ) {
+      throw new Error('specs not found, see docs in /docs');
+    }
+
     const udateCarUseCase = new UpdateCarUseCase();
 
     const newCarForRent = await udateCarUseCase.update({
