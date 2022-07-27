@@ -250,6 +250,9 @@
             "application/json": {
               "schema": {
                 "properties": {
+                  "id": {
+                    "type": "string"
+                  },
                   "title": {
                     "type": "string"
                   },
@@ -263,6 +266,7 @@
               },
               
               "example": {
+                "id": "car_id",
                 "title": "Gol G5 preto completo",
                 "specs": {
                   "brand": "Vvolkswagen",
@@ -282,6 +286,60 @@
           },
           "400": {
             "description": "Parameters or specs not found"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
+    },
+
+    "/cars/delete": {
+      "delete": {
+        "tags": ["Cars"],
+        "summary": "Delete Car",
+        "description": "Delete car",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              
+              "example": {
+                "id": "car_id"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "car successfully deleted"
+          },
+          "400": {
+            "description": "Car not found"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
+    },
+
+    "/cars": {
+      "get": {
+        "tags": ["Cars"],
+        "summary": "List all Cars",
+        "description": "List all car for rent",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "ok"
           },
           "401": {
             "description": "Token not found!"

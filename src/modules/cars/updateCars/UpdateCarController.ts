@@ -7,7 +7,7 @@ export class UpdateCarController {
     const { id, title, specs, price } = req.body;
 
     if (!id || !title || !specs || !price) {
-      throw new Error('Parameters not found, see docs in /docs');
+      throw new Error('Parameters or specs not found, see docs in /docs');
     }
 
     if (
@@ -17,7 +17,7 @@ export class UpdateCarController {
       !specs.type ||
       !specs.description
     ) {
-      throw new Error('specs not found, see docs in /docs');
+      throw new Error('Parameters or specs not found, see docs in /docs');
     }
 
     const udateCarUseCase = new UpdateCarUseCase();

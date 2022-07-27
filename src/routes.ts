@@ -40,7 +40,7 @@ routes.delete(
 
 routes.post('/car/register', validateAuthenticate, createCarController.create);
 routes.get('/cars', validateAuthenticate, listCarsController.list);
-routes.delete('/cars', validateAuthenticate, deleteCarController.delete);
+routes.delete('/cars/delete', validateAuthenticate, deleteCarController.delete);
 routes.post('/car/rent', validateAuthenticate, carRentController.rent);
 routes.post(
   '/car/rent/cancel',
