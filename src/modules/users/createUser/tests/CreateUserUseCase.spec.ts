@@ -13,5 +13,6 @@ describe('Create user', () => {
     const user = await createUserUseCaseInMemory.create(userData);
 
     expect(user).toHaveProperty('id');
+    expect(user).toHaveProperty('password');
   });
 });

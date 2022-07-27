@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt';
 import { v4 as uuid } from 'uuid';
 
 interface ICreateUserInMemory {
@@ -8,14 +9,13 @@ interface ICreateUserInMemory {
 
 export class CreateUserUseCaseInMemory {
   async create({ name, email, password }: ICreateUserInMemory) {
-    const user = [];
-
-    user.push({ name, email, password });
+    const hashPassword = await hash(password, 10);
 
     const result = {
       id: uuid(),
       name,
       email,
+      password: hashPassword,
     };
 
     return result;

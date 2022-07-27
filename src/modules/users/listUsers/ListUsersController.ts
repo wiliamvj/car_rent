@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { ListUsersUseCase } from './ListUsersUseCase';
 
-export class ListUserController {
+export class ListUsersController {
   async list(req: Request, res: Response) {
     const listUsersUseCase = new ListUsersUseCase();
 
