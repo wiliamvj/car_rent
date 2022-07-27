@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Car Rent",
+    "description": "Car Rent API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "wiliamjoaquim@gmail.com"
+    }
+  },
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a new user",
+        "description": "Route for create new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }, 
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              
+              "example": {
+                "name": "Fulano",
+                "email": "thebestemail.com",
+                "password": "strongPass1*"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Parameters not found"
+          }
+        }
+      }
+    },
+
+    "/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login ",
+        "description": "Route for login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              
+              "example": {
+                "name": "Fulano",
+                "email": "thebestemail.com",
+                "password": "strongPass1*"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Parameters not found or Email or password invalid!"
+          }
+        }
+      }
+    },
+
+    "/users": {
+    "get": {
+        "tags": ["User"],
+        "summary": "List all users",
+        "description": "Route for listing all users",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Token no found!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
