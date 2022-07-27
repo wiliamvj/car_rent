@@ -24,7 +24,10 @@ model Cars {
   id           String   @id @default(uuid())
   id_user_rent String?
   id_user      User?    @relation(fields: [id_user_rent], references: [id])
-  car_name     String
+  title        String
+  specs        Json
+  in_rent      DateTime
+  until_rent   DateTime
   brand        String
   price        Float
   created_at   DateTime @default(now())
