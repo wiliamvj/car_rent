@@ -4,11 +4,11 @@ import { DeleteUserUseCase } from './DeleteUserUseCase';
 
 export class DeleteUserController {
   async delete(req: Request, res: Response) {
-    const { email } = req.body;
+    const { id } = req.body;
 
     const deleteUserUseCase = new DeleteUserUseCase();
 
-    const userResults = await deleteUserUseCase.delete({ email });
+    const userResults = await deleteUserUseCase.delete({ id });
 
     return res.json(userResults);
   }

@@ -1,14 +1,14 @@
 import { prisma } from '../../../database/prismaClient';
 
 interface IUpdateUser {
-  email: string;
+  id: string;
 }
 
 export class DeleteUserUseCase {
-  async delete({ email }: IUpdateUser) {
+  async delete({ id }: IUpdateUser) {
     const userExists = await prisma.user.findUnique({
       where: {
-        email: email,
+        id: id,
       },
     });
 
@@ -18,7 +18,7 @@ export class DeleteUserUseCase {
 
     await prisma.user.delete({
       where: {
-        id: userExists.id,
+        id: id,
       },
     });
 
