@@ -149,6 +149,43 @@
           }
         }
       }
+    },
+
+    "/user/delete": {
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete user",
+        "description": "Route for delete user",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              
+              "example": {
+                "id": "id user"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "user successfully deleted"
+          },
+          "400": {
+            "description": "User not found!"
+          },
+          "401": {
+            "description": "Token not found!"
+          }
+        }
+      }
     }
     
   },
