@@ -32,7 +32,11 @@ routes.post('/user', createUserController.create);
 routes.post('/login', authenticateUserController.login);
 routes.get('/users', validateAuthenticate, listUserController.list);
 routes.put('/user/update', validateAuthenticate, updateUserController.update);
-routes.delete('/user', validateAuthenticate, deleteUserController.delete);
+routes.delete(
+  '/user/delete',
+  validateAuthenticate,
+  deleteUserController.delete
+);
 
 routes.post('/car/register', validateAuthenticate, createCarController.create);
 routes.get('/cars', validateAuthenticate, listCarsController.list);
