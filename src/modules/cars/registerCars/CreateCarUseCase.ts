@@ -1,25 +1,31 @@
 import { prisma } from '../../../database/prismaClient';
 
 interface ICreateCar {
-  car_name: string;
-  brand: string;
+  title: string;
+  specs: {
+    brand: string;
+    model: string;
+    km: number;
+    type: string;
+    description: string;
+  };
   price: number;
 }
 
 export class CreateCarUseCase {
-  async create({ car_name, brand, price }: ICreateCar) {
+  async create({ title, specs, price }: ICreateCar) {
     const carRent = await prisma.cars.create({
       data: {
-        car_name,
-        brand,
+        title,
+        specs,
         price,
       },
     });
 
     const result = {
       id: carRent.id,
-      car_name: carRent.car_name,
-      brand: carRent.brand,
+      title: carRent.title,
+      specs: carRent.specs,
       price_rent: carRent.price,
       created_at: carRent.created_at,
     };

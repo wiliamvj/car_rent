@@ -21,16 +21,15 @@ model User {
 }
 
 model Cars {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   id_user_rent String?
-  id_user      User?    @relation(fields: [id_user_rent], references: [id])
+  id_user      User?     @relation(fields: [id_user_rent], references: [id])
   title        String
   specs        Json
-  in_rent      DateTime
-  until_rent   DateTime
-  brand        String
+  in_rent      DateTime?
+  until_rent   DateTime?
   price        Float
-  created_at   DateTime @default(now())
+  created_at   DateTime  @default(now())
 
   @@map("cars")
 }
