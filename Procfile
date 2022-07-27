@@ -1,3 +1,3 @@
 worker: npm start
 
-worker: yarn build
+worker: npm build
